@@ -1,0 +1,36 @@
+{
+  "name": "testwebpack",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/testwebpack/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/testwebpack",
+        "main": "libs/testwebpack/src/index.ts",
+        "tsConfig": "libs/testwebpack/tsconfig.lib.json",
+        "webpackConfig":"libs/testwebpack/webpack/webpack.test.js",
+        "index": "libs/testwebpack/index.html",
+        "generateIndexHtml": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/testwebpack/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/testwebpack"],
+      "options": {
+        "jestConfig": "libs/testwebpack/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
